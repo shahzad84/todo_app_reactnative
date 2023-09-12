@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { React, useState } from "react";
 import { TextInput } from "react-native-web";
 export default function App() {
@@ -13,12 +20,21 @@ export default function App() {
     { name: "sh", key: "7" },
     { name: "to", key: "8" },
   ]);
-
+  const pressHandler=(key)=>{
+    console.log(key);  
+    setPeople((prevPeople)=>{
+      return prevPeople.filter(person=>person.key!=key);
+    })
+  }
   return (
     <View style={styles.container}>
       <FlatList
         data={people}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={()=>pressHandler(item.key)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
       />
       {/* <ScrollView>
         {people.map(item=>(
