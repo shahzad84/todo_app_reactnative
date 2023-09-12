@@ -1,22 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import {React,useState} from 'react';
-import { Button } from 'react-native-web';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { React, useState } from "react";
+import { TextInput } from "react-native-web";
 export default function App() {
-  const [name,setName]=useState("shahzad");
-  const [person,setPerson]=useState({name:"cool",age:"34"});
-  const clickHandle=()=>{
-    setName("good");
-    setPerson({name:"noob",age:"53"})
-  }
+  const [name, setName] = useState("shahzad");
+  const [age, setAge] = useState("34");
+
+  const textChange = (val) => {
+    setName(val);
+  };
+  const ageChange = (val) => {
+    setAge(val);
+  };
   return (
     <View style={styles.container}>
-      <Text>hii my name is {name}</Text>
-      <Text>this is {person.name} and my age is {person.age} </Text>
-      <View>
-        <Button title="click" onPress={clickHandle}/>
-      </View>
-      <StatusBar style="auto" />
+      <Text>Enter your name</Text>
+      <TextInput
+        multiline
+        placeholder="e.g. shahzad"
+        onChangeText={textChange}
+      />
+      <Text>Enter your age</Text>
+      <TextInput
+        multiline
+        placeholder="e.g. 33"
+        keyboardType="numeric"
+        onChangeText={ageChange}
+      />
+      <Text>
+        my name {name} and my age is {age}
+      </Text>
     </View>
   );
 }
@@ -24,8 +37,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
