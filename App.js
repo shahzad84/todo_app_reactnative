@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import {React,useState} from 'react';
+import { Button } from 'react-native-web';
 export default function App() {
+  const [name,setName]=useState("shahzad");
+  const clickHandle=()=>{
+    setName("good");
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>hii my name is {name}</Text>
+      <view>
+        <Button title="click" onPress={clickHandle}/>
+      </view>
       <StatusBar style="auto" />
     </View>
   );
